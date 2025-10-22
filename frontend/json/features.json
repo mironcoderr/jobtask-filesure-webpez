@@ -1,0 +1,32 @@
+[
+    {
+        "id": 1,
+        "icon": "mc-line-area-chart",
+        "title": "Regular Updates & New Launches"
+    },
+    {
+        "id": 2,
+        "icon": "mc-line-monitor-mobile",
+        "title": "Fully Responsive Across All Devices"
+    },
+    {
+        "id": 3,
+        "icon": "mc-line-chats",
+        "title": "Dedicated Customer Support"
+    },
+    {
+        "id": 4,
+        "icon": "mc-line-banknotes",
+        "title": "Affordable & Flexible Pricing"
+    },
+    {
+        "id": 5,
+        "icon": "mc-line-maximize",
+        "title": "Fully Customizable Templates"
+    },
+    {
+        "id": 6,
+        "icon": "mc-line-users",
+        "title": "Developer-Friendly Coding Structure"
+    }
+]

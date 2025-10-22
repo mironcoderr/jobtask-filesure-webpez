@@ -1,0 +1,22 @@
+[
+    {
+        "id": 1,
+        "menu": "cookie setting",
+        "path": "#"
+    },
+    {
+        "id": 2,
+        "menu": "terms & conditions",
+        "path": "#"
+    },
+    {
+        "id": 3,
+        "menu": "privacy policy",
+        "path": "#"
+    },
+    {
+        "id": 4,
+        "menu": "about us",
+        "path": "#"
+    }
+]

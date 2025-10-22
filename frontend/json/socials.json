@@ -1,0 +1,37 @@
+[
+    {
+        "id": 1,
+        "name": "facebook",
+        "icon": "mc-fill-facebook-icon",
+        "bg": "bg-facebook",
+        "path": "#"
+    },
+    {
+        "id": 2,
+        "name": "instagram",
+        "icon": "mc-fill-instagram-icon",
+        "bg": "bg-instagram",
+        "path": "#"
+    },
+    {
+        "id": 3,
+        "name": "twitterX",
+        "icon": "mc-fill-twitter-x-icon",
+        "bg": "bg-twitterX",
+        "path": "#"
+    },
+    {
+        "id": 4,
+        "name": "linkedin",
+        "icon": "mc-fill-linkedin-icon",
+        "bg": "bg-linkedin",
+        "path": "#"
+    },
+    {
+        "id": 5,
+        "name": "youtube",
+        "icon": "mc-fill-youtube-icon",
+        "bg": "bg-youtube",
+        "path": "#"
+    }
+]

@@ -1,0 +1,42 @@
+[
+    { 
+        "id": 1, 
+        "name": "html",
+        "image": "/images/technologies/html.png"
+    },
+    { 
+        "id": 2, 
+        "name": "react",
+        "image": "/images/technologies/react.png"
+    },
+    { 
+        "id": 3, 
+        "name": "next",
+        "image": "/images/technologies/next.png"
+    },
+    { 
+        "id": 4, 
+        "name": "vue",
+        "image": "/images/technologies/vue.png"
+    },
+    { 
+        "id": 5, 
+        "name": "nuxt",
+        "image": "/images/technologies/nuxt.png"
+    },
+    { 
+        "id": 6, 
+        "name": "redux",
+        "image": "/images/technologies/redux.png"
+    },
+    { 
+        "id": 7, 
+        "name": "pinia",
+        "image": "/images/technologies/pinia.png"
+    },
+    { 
+        "id": 8, 
+        "name": "tailwindcss",
+        "image": "/images/technologies/tailwindcss.png"
+    }
+]

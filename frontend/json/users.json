@@ -1,0 +1,62 @@
+[
+    {
+        "id": 1234561,
+        "name": "miron mahmud",
+        "email": "mironcoder@gmail.com",
+        "referral": "https://webpez.com/registration?r=mironcoder",
+        "invited": 233,
+        "registered": 145,
+        "earned": 290,
+        "createdAt": "15/06/2022 14:02"
+    },
+    {
+        "id": 1234562,
+        "name": "sadia rahman",
+        "email": "sadia.rahman@example.com",
+        "referral": "https://webpez.com/registration?r=sadiarahman",
+        "invited": 180,
+        "registered": 120,
+        "earned": 250,
+        "createdAt": "22/07/2022 10:15"
+    },
+    {
+        "id": 1234563,
+        "name": "fahim ahmed",
+        "email": "fahim.dev@example.com",
+        "referral": "https://webpez.com/registration?r=fahimahmed",
+        "invited": 150,
+        "registered": 95,
+        "earned": 200,
+        "createdAt": "05/09/2022 09:47"
+    },
+    {
+        "id": 1234564,
+        "name": "nishat tasnim",
+        "email": "nishat.t@example.com",
+        "referral": "https://webpez.com/registration?r=nishattasnim",
+        "invited": 275,
+        "registered": 180,
+        "earned": 350,
+        "createdAt": "11/11/2022 16:30"
+    },
+    {
+        "id": 1234565,
+        "name": "rakib hasan",
+        "email": "rakib.hasan@example.com",
+        "referral": "https://webpez.com/registration?r=rakibhasan",
+        "invited": 90,
+        "registered": 60,
+        "earned": 120,
+        "createdAt": "28/01/2023 12:05"
+    },
+    {
+        "id": 1234566,
+        "name": "mehjabin akter",
+        "email": "mehjabin.a@example.com",
+        "referral": "https://webpez.com/registration?r=mehjabinakter",
+        "invited": 310,
+        "registered": 210,
+        "earned": 420,
+        "createdAt": "19/03/2023 18:22"
+    }
+]

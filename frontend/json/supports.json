@@ -1,0 +1,22 @@
+[
+    {
+        "id": 1,
+        "menu": "refund & exchange",
+        "path": "#"
+    },
+    {
+        "id": 2,
+        "menu": "custom development",
+        "path": "#"
+    },
+    {
+        "id": 3,
+        "menu": "documentation",
+        "path": "#"
+    },
+    {
+        "id": 4,
+        "menu": "contact us",
+        "path": "#"
+    }
+]

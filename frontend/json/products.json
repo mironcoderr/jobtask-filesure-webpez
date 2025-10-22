@@ -1,0 +1,161 @@
+[
+    {
+        "id": 1,
+        "name": "restfood",
+        "title": "multivendor online food ordering delivery and pickup system pwa nextjs template",
+        "path": "https://mironcoder-restfood.netlify.app",
+        "brand_color": "246 148 0",
+        "price": { "regular": 25, "extended": 250 },
+        "technologies": [
+            { "id": 1, "name": "react", "image": "/images/technologies/react.png" },
+            { "id": 2, "name": "next", "image": "/images/technologies/next.png" },
+            { "id": 3, "name": "redux", "image": "/images/technologies/redux.png" },
+            { "id": 4, "name": "tailwindcss", "image": "/images/technologies/tailwindcss.png" },
+            { "id": 5, "name": "javascript", "image": "/images/technologies/javascript.png" },
+            { "id": 6, "name": "typescript", "image": "/images/technologies/typescript.png" },
+            { "id": 7, "name": "progressive web app", "image": "/images/technologies/pwa.png" }
+        ]
+    },
+    {
+        "id": 2,
+        "name": "classicads",
+        "title": "classified ads listing pltaform including user dashboard html template",
+        "path": "https://mironcoder-classicads.netlify.app",
+        "brand_color": "0 68 187",
+        "price": { "regular": 22, "extended": 220 },
+        "technologies": [
+            { "id": 1, "name": "html", "image": "/images/technologies/html.png" },
+            { "id": 2, "name": "css", "image": "/images/technologies/css.png" },
+            { "id": 3, "name": "sass", "image": "/images/technologies/sass.png" },
+            { "id": 4, "name": "bootstrap", "image": "/images/technologies/bootstrap.png" },
+            { "id": 5, "name": "javascript", "image": "/images/technologies/javascript.png" },
+            { "id": 6, "name": "jquery", "image": "/images/technologies/jquery.png" },
+            { "id": 7, "name": "fontawesome", "image": "/images/technologies/fontawesome.png" }
+        ]
+    },
+    {
+        "id": 3,
+        "name": "hotash",
+        "title": "Multipurpose ecommerce, analytics and crm admin dashboard reactjs template",
+        "path": "https://mironcoder-hotash.netlify.app",
+        "brand_color": "8 88 247",
+        "price": { "regular": 23, "extended": 230 },
+        "technologies": [
+            { "id": 1, "name": "react", "image": "/images/technologies/react.png" },
+            { "id": 2, "name": "css", "image": "/images/technologies/css.png" },
+            { "id": 3, "name": "sass", "image": "/images/technologies/sass.png" },
+            { "id": 4, "name": "react-bootstrap", "image": "/images/technologies/bootstrap.png" },
+            { "id": 5, "name": "javascript", "image": "/images/technologies/javascript.png" }
+        ]
+    },
+    {
+        "id": 4,
+        "name": "greeny",
+        "title": "Multipurpose ecommerce solution specially grocery bussiness html template",
+        "path": "https://mironcoder-greeny.netlify.app",
+        "brand_color": "17 151 68",
+        "price": { "regular": 17, "extended": 170 },
+        "technologies": [
+            { "id": 1, "name": "html", "image": "/images/technologies/html.png" },
+            { "id": 2, "name": "css", "image": "/images/technologies/css.png" },
+            { "id": 3, "name": "sass", "image": "/images/technologies/sass.png" },
+            { "id": 4, "name": "bootstrap", "image": "/images/technologies/bootstrap.png" },
+            { "id": 5, "name": "javascript", "image": "/images/technologies/javascript.png" },
+            { "id": 6, "name": "jquery", "image": "/images/technologies/jquery.png" }
+        ]
+    },
+    {
+        "id": 5,
+        "name": "portlab",
+        "title": "personal portfolio or digital agency online profile showcase html template",
+        "path": "https://mironcoder-portlab.netlify.app",
+        "brand_color": "216 83 43",
+        "price": { "regular": 15, "extended": 150 },
+        "technologies": [
+            { "id": 1, "name": "html", "image": "/images/technologies/html.png" },
+            { "id": 2, "name": "css", "image": "/images/technologies/css.png" },
+            { "id": 3, "name": "sass", "image": "/images/technologies/sass.png" },
+            { "id": 4, "name": "bootstrap", "image": "/images/technologies/bootstrap.png" },
+            { "id": 5, "name": "javascript", "image": "/images/technologies/javascript.png" },
+            { "id": 6, "name": "jquery", "image": "/images/technologies/jquery.png" }
+        ]
+    },
+    {
+        "id": 6,
+        "name": "ghurnek",
+        "title": "automotive and car dealership or listing platform solution html template",
+        "path": "https://mironcoder-ghurnek.netlify.app",
+        "brand_color": "71 124 219",
+        "price": { "regular": 19, "extended": 190 },
+        "technologies": [
+            { "id": 1, "name": "html", "image": "/images/technologies/html.png" },
+            { "id": 2, "name": "css", "image": "/images/technologies/css.png" },
+            { "id": 3, "name": "sass", "image": "/images/technologies/sass.png" },
+            { "id": 4, "name": "bootstrap", "image": "/images/technologies/bootstrap.png" },
+            { "id": 5, "name": "javascript", "image": "/images/technologies/javascript.png" },
+            { "id": 6, "name": "jquery", "image": "/images/technologies/jquery.png" }
+        ]
+    },
+    {
+        "id": 7,
+        "name": "domhost",
+        "title": "domain and web hosting service selling platform html template",
+        "path": "https://mironcoder-domhost.netlify.app",
+        "brand_color": "85 24 138",
+        "price": { "regular": 21, "extended": 210 },
+        "technologies": [
+            { "id": 1, "name": "html", "image": "/images/technologies/html.png" },
+            { "id": 2, "name": "css", "image": "/images/technologies/css.png" },
+            { "id": 3, "name": "sass", "image": "/images/technologies/sass.png" },
+            { "id": 4, "name": "bootstrap", "image": "/images/technologies/bootstrap.png" },
+            { "id": 5, "name": "javascript", "image": "/images/technologies/javascript.png" },
+            { "id": 6, "name": "jquery", "image": "/images/technologies/jquery.png" }
+        ]
+    },
+    {
+        "id": 8,
+        "name": "ushno",
+        "title": "online frequency modulation (fm) radio station platform html template",
+        "path": "https://mironcoder-ushno.netlify.app",
+        "brand_color": "127 0 255",
+        "price": { "regular": 23, "extended": 230 },
+        "technologies": [
+            { "id": 1, "name": "html", "image": "/images/technologies/html.png" },
+            { "id": 2, "name": "css", "image": "/images/technologies/css.png" },
+            { "id": 3, "name": "sass", "image": "/images/technologies/sass.png" },
+            { "id": 4, "name": "bootstrap", "image": "/images/technologies/bootstrap.png" },
+            { "id": 5, "name": "javascript", "image": "/images/technologies/javascript.png" },
+            { "id": 6, "name": "jquery", "image": "/images/technologies/jquery.png" }
+        ]
+    },
+    {
+        "id": 9,
+        "name": "ecomart",
+        "title": "multipurpose ecommerce bussiness solution simple features html template",
+        "path": "https://mironcoder-ecomart.netlify.app",
+        "brand_color": "135 64 221",
+        "price": { "regular": 17, "extended": 170 },
+        "technologies": [
+            { "id": 1, "name": "html", "image": "/images/technologies/html.png" },
+            { "id": 2, "name": "css", "image": "/images/technologies/css.png" },
+            { "id": 3, "name": "sass", "image": "/images/technologies/sass.png" },
+            { "id": 4, "name": "bootstrap", "image": "/images/technologies/bootstrap.png" },
+            { "id": 5, "name": "javascript", "image": "/images/technologies/javascript.png" }
+        ]
+    },
+    {
+        "id": 10,
+        "name": "bccgh",
+        "title": "doctors appoinment and online diagonstic hospital solution html template",
+        "path": "https://mironcoder-bccgh.netlify.app",
+        "brand_color": "34 85 187",
+        "price": { "regular": 19, "extended": 190 },
+        "technologies": [
+            { "id": 1, "name": "html", "image": "/images/technologies/html.png" },
+            { "id": 2, "name": "css", "image": "/images/technologies/css.png" },
+            { "id": 3, "name": "sass", "image": "/images/technologies/sass.png" },
+            { "id": 4, "name": "bootstrap", "image": "/images/technologies/bootstrap.png" },
+            { "id": 5, "name": "javascript", "image": "/images/technologies/javascript.png" }
+        ]
+    }
+]
