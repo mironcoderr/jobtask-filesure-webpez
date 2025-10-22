@@ -1,2 +1,2 @@
 # jobtask-filesure-webpez
-Digital template marketplace with a referral &amp; credit system demonstrating full‑stack architecture and engineering best practices.
+Digital Market — a full‑stack template marketplace (HTML, React, Next, Vue, Nuxt, Angular templates) that demonstrates a production‑grade Referral & Credit System. Built with Next.js + TypeScript on the frontend, Express + TypeScript on the backend, and MongoDB for persistence. Features secure authentication, unique referral links, first‑purchase credits for both referrer and referred, conversion tracking, and a dashboard with real‑time activity.
