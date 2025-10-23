@@ -9,8 +9,9 @@ import legals from "@/json/legals.json"
 import socials from "@/json/socials.json"
 import supports from "@/json/supports.json"
 import contacts from "@/json/contacts.json"
+import UserNavsComponent from "@/components/UserNavsComponent"
 
-export default function ClientLayout({children}: Readonly<{
+export default async function ClientLayout({children}: Readonly<{
     children: React.ReactNode
 }>) {
     return (
@@ -25,16 +26,7 @@ export default function ClientLayout({children}: Readonly<{
                         <i className="mc-fill-file text-3xl"></i>
                         <span className="text-3xl font-bold">webpez</span>
                     </Link>
-                    <nav className="flex items-center gap-4">
-                        <Link href="/registration" className="flex-shrink-0 inline-flex items-center justify-center gap-1.5 h-9 px-4 rounded-full border border-white text-white">
-                            <i className="mc-fill-pos text-lg"></i>
-                            <span className="text-sm font-semibold capitalize">registration</span>
-                        </Link>
-                        <Link href="/login" className="flex-shrink-0 inline-flex items-center justify-center gap-1.5 h-9 px-4 rounded-full text-primary bg-white">
-                            <i className="mc-fill-circle-user text-lg"></i>
-                            <span className="text-sm font-semibold capitalize">log in</span>
-                        </Link>
-                    </nav>
+                    <UserNavsComponent />
                 </div>
             </div>
         </header>

@@ -11,6 +11,10 @@ import { LoginType } from "../schemas/loginSchema";
 
 export const registerService = async ({ name, email, password, referralCode }: RegisterType) => {
 
+    // DUPLICATE USER CHECKING BY EMAIL
+    const existingUser = await User.findOne({email});
+    if(existingUser) throw new Error("Email already registered!");
+
     // CREATED HASHED PASSWORD
     const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -79,10 +83,6 @@ export const loginService = async ({ email, password }: LoginType) => {
 
     return {
         token,
-        user: {
-            name: user.name,
-            email: user.email,
-            role: user.role
-        }
+        user
     }
 }

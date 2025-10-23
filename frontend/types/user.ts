@@ -1,10 +1,13 @@
 export interface User {
-    id: number;
+    _id: string;
     name: string;
     email: string;
-    referral: string;
-    invited: number;
-    registered: number;
-    earned: number;
+    password: string;
+    role: number;
+    credits: number;
+    referredBy: string | null;
+    referralCode: string;
     createdAt: string;
-}
+    updatedAt: string;
+    __v: number;
+};

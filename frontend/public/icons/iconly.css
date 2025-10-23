@@ -7,8 +7,8 @@
   font-family: "Iconly";
   font-style: normal;
   font-weight: 400;
-  src: url("./iconly.eot?1760801409092");
-  src: url("./iconly.eot?#iefix") format("embedded-opentype"), url("./iconly.woff2?1760801409092") format("woff2"), url("./iconly.woff?1760801409092") format("woff"), url("./iconly.ttf?1760801409092") format("truetype"), url("./iconly.svg?1760801409092#Iconly") format("svg");
+  src: url("./iconly.eot?1761213852624");
+  src: url("./iconly.eot?#iefix") format("embedded-opentype"), url("./iconly.woff2?1761213852624") format("woff2"), url("./iconly.woff?1761213852624") format("woff"), url("./iconly.ttf?1761213852624") format("truetype"), url("./iconly.svg?1761213852624#Iconly") format("svg");
 }
 
 [class="mc"], [class^="mc-"], [class*=" mc-"] {
@@ -1239,6 +1239,10 @@
   content: "\e12f";
 }
 
+.mc-fill-unlock:before {
+  content: "\e130";
+}
+
 .mc-fill-linkedin-icon:before {
   content: "\e131";
 }
@@ -1251,6 +1255,10 @@
   content: "\e133";
 }
 
+.mc-fill-shield-tick:before {
+  content: "\e134";
+}
+
 .mc-fill-info:before {
   content: "\e135";
 }
@@ -1261,6 +1269,14 @@
 
 .mc-fill-image-gallery:before {
   content: "\e137";
+}
+
+.mc-fill-shield-security:before {
+  content: "\e138";
+}
+
+.mc-fill-shield-cross:before {
+  content: "\e139";
 }
 
 .mc-fill-global:before {
@@ -1281,6 +1297,10 @@
 
 .mc-fill-file-excel:before {
   content: "\e13e";
+}
+
+.mc-fill-security-safe:before {
+  content: "\e13f";
 }
 
 .mc-fill-facebook-icon:before {
@@ -1509,4 +1529,28 @@
 
 .mc-line-delivery-rider:before {
   content: "\e178";
+}
+
+.mc-fill-lock:before {
+  content: "\e179";
+}
+
+.mc-fill-lock-slash:before {
+  content: "\e17a";
+}
+
+.mc-fill-lock-circle:before {
+  content: "\e17b";
+}
+
+.mc-fill-key-2:before {
+  content: "\e17c";
+}
+
+.mc-fill-eye-2:before {
+  content: "\e17d";
+}
+
+.mc-fill-eye-slash:before {
+  content: "\e17e";
 }

@@ -8,14 +8,20 @@ interface PasswordFieldProps {
     onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
     placeholder?: string;
     className?: string;
+    hasError?: string | boolean;
 }
 
-export default function PasswordFieldComponent({ name, value, onChange, placeholder, className }: PasswordFieldProps) {
+export default function PasswordFieldComponent({ name, value, onChange, placeholder, className, hasError=false }: PasswordFieldProps) {
 
     const [showPassword, setShowPassword] = useState(false);
 
     return (
-        <div className={`${className} group w-full h-11 leading-12 px-4 font-medium rounded-xl flex items-center gap-2 border border-gray-100 bg-gray-100 focus-within:bg-white focus-within:border-primary/50 transition-all duration-300`}>
+        <div className={`
+            ${className} 
+            ${hasError ? 'border-danger/50 bg-white' : 'border-gray-100 bg-gray-100'}
+            group w-full h-11 leading-12 px-4 font-medium rounded-xl flex items-center gap-2 border text-heading focus-within:bg-white focus-within:border-primary/50 transition
+            
+        `}>
             <input 
                 type={showPassword ? 'text' : 'password'} 
                 name={name} 

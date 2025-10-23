@@ -36,7 +36,7 @@
 @layer base {
     html,
     body {
-        @apply text-base font-normal scroll-smooth text-paragraph;
+        @apply text-base font-normal text-paragraph;
     }
 
     a,
