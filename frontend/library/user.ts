@@ -8,7 +8,7 @@ export async function getMyData(): Promise<User | null> {
     if (!token) return null;
 
     try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/users/me`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/users/me`, {
             method: "GET",
             credentials: "include",
             headers: { Cookie: `token=${token}`},
@@ -31,7 +31,7 @@ export async function getRegisteredUsers(): Promise<User[]> {
     const token = await getToken();
 
     try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/users/registered`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/users/registered`, {
             method: "GET",
             credentials: "include",
             headers: { Cookie: `token=${token}`},
@@ -55,7 +55,7 @@ export async function getReferredUsers(): Promise<Referral[]> {
     if (!token) return [];
 
     try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/users/referred`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/users/referred`, {
             method: "GET",
             credentials: "include",
             headers: { Cookie: `token=${token}` },

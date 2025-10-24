@@ -15,7 +15,7 @@ const initialState: UserState = {
 
 export const fetchMyData = createAsyncThunk('user/fetchMyData', async (_, { rejectWithValue }) => {
     try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/users/me`, {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/users/me`, {
             method: 'GET',
             credentials: 'include',
         });

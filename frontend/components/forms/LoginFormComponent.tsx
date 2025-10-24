@@ -68,7 +68,7 @@ export default function LoginFormComponent() {
         try {
             const payload = parsedData.data;
 
-            const response = await fetch(process.env.NEXT_PUBLIC_BASE_URL + "/auth/login", {
+            const response = await fetch(process.env.NEXT_PUBLIC_BASE_URL + "/api/auth/login", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 credentials: "include",

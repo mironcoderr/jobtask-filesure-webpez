@@ -12,7 +12,7 @@ export const useAuth = () => {
 
     const handleLogout = async () => {
         try {
-            const response = await fetch(process.env.NEXT_PUBLIC_BASE_URL + "/auth/logout", {
+            const response = await fetch(process.env.NEXT_PUBLIC_BASE_URL + "/api/auth/logout", {
                 method: "POST",
                 credentials: "include",
             });

@@ -16,7 +16,7 @@ export default function ClientPurchaseButtonComponent() {
         setLoading(true);
 
         try {
-            const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/purchases`, {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/purchases`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 credentials: "include",
