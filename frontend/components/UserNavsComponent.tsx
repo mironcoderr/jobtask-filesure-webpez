@@ -11,7 +11,7 @@ export default function UserNavsComponent() {
 
     return (
         user ?
-        <nav className="flex items-center gap-4">
+        <nav className="flex items-center gap-3 sm:gap-4">
             <Link href="/dashboard" className="flex-shrink-0 inline-flex items-center justify-center gap-1.5 h-9 px-4 rounded-full border border-white text-white">
                 <i className="mc-fill-grid text-lg"></i>
                 <span className="text-sm font-semibold capitalize">dashboard</span>
@@ -22,7 +22,7 @@ export default function UserNavsComponent() {
             </button>
         </nav>
         :
-        <nav className="flex items-center gap-4">
+        <nav className="flex items-center gap-3 sm:gap-4">
             <Link href="/registration" className="flex-shrink-0 inline-flex items-center justify-center gap-1.5 h-9 px-4 rounded-full border border-white text-white">
                 <i className="mc-fill-pos text-lg"></i>
                 <span className="text-sm font-semibold capitalize">registration</span>

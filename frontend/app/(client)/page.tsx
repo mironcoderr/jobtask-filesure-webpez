@@ -38,7 +38,7 @@ export default async function HomePage({searchParams}: { searchParams: any }) {
                     <i className="mc-line-notes animate-pulse text-4xl absolute -top-15  left-1/2 text-white/10"></i>
                     <i className="mc-line-layer animate-pulse text-4xl absolute -top-25  left-1/4 text-white/10"></i>
                     <i className="mc-line-theme animate-pulse text-4xl absolute -top-25  left-2/3 text-white/10"></i>
-                    <h1 className="mb-8 mx-auto max-w-5xl text-5xl leading-tight font-bold text-center text-white">
+                    <h1 className="mb-8 mx-auto max-w-5xl text-4xl md:text-5xl leading-tight font-bold text-center text-white">
                         Join the #1 Platform for Business & Startup Frontend Template Marketplace
                     </h1>
                     <ul className="mb-16 flex flex-wrap items-center justify-center gap-4">
@@ -54,9 +54,9 @@ export default async function HomePage({searchParams}: { searchParams: any }) {
                             </li>
                         ))}
                     </ul>
-                    <ul className="grid grid-cols-6 gap-6">
+                    <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 sm:gap-6">
                         {features.map((feature: Feature, index: number) => (
-                            <li key={index} className="p-6 rounded-2xl backdrop-blur bg-gradient-to-b from-black to-transparent text-white">
+                            <li key={index} className="p-4 sm:p-6 rounded-2xl backdrop-blur bg-gradient-to-b from-black to-transparent text-white">
                                 <i className={feature.icon + ' text-4xl brightness-150 mb-4 text-primary'}></i>
                                 <span className="text-base">{feature.title}</span>
                             </li>
