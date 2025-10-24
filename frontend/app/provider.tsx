@@ -1,7 +1,8 @@
 'use client'
 
-import { useRef } from 'react'
 import { Provider } from 'react-redux'
+import { useRef, useEffect } from 'react'
+import { fetchMyData } from '@/stores/slices/user'
 import { makeStore, AppStore } from '@/stores/settings/config'
 
 export default function StoreProvider({
@@ -14,6 +15,14 @@ export default function StoreProvider({
     if (!storeRef.current) {
         storeRef.current = makeStore()
     }
+
+    useEffect(() => {
+        const haveData = localStorage.getItem('mydata');
+
+        if(haveData) {
+            storeRef.current?.dispatch(fetchMyData());
+        }
+    }, []);
 
     return (
         <Provider store={storeRef.current}>

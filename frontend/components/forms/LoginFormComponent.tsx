@@ -5,8 +5,9 @@ import { LoginType, loginSchema } from "@/schemas/LoginSchema";
 import { ChangeEvent, FormEvent, useState } from "react";
 import { useAppDispatch } from "@/stores/settings/hooks";
 import { UserRoleEnum } from "@/enums/userRoleEnum";
-import { setMyData } from "@/stores/slices/user";
+import { fetchMyData, setMyData } from "@/stores/slices/user";
 import { useRouter } from "next/navigation";
+import credentials from "@/json/credentials.json";
 import toast from "react-hot-toast";
 import Link from "next/link";
 
@@ -27,6 +28,15 @@ export default function LoginFormComponent() {
         password: "",
     });
 
+    const handleLoginCredential = (role: string) => {
+        const credential = credentials[role as keyof typeof credentials];
+        if (credential) {
+            setFormData(prev => ({
+                ...prev,
+                ...credential,
+            }));
+        }
+    };
 
     const handleChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -76,6 +86,7 @@ export default function LoginFormComponent() {
             else {
                 toast.success(result.message || "Login successfully done!");
 
+                dispatch(fetchMyData());
                 dispatch(setMyData(result.user));
 
                 if(result.user.role === UserRoleEnum.ADMIN) {
@@ -131,6 +142,23 @@ export default function LoginFormComponent() {
             <p className="text-sm font-medium text-center">
                 Don't have an account? <Link href="/registration" className="inline font-semibold capitalize text-primary">registration</Link>
             </p>
+
+            <div className="py-4 before:w-full before:h-[1px] before:bg-primary/10">
+                <span className="mx-auto -mt-6.5 relative z-10 w-10 aspect-square rounded-full flex items-center justify-center font-medium border border-primary/10 bg-white">or</span>
+            </div>
+
+            <button 
+                type="button"
+                onClick={()=> handleLoginCredential('client')}
+                className="w-full h-11 mb-4 font-medium rounded-full capitalize bg-blue-500 text-white">
+                client credentials
+            </button>
+            <button 
+                type="button" 
+                onClick={()=> handleLoginCredential('admin')}
+                className="w-full h-11 mb-4 font-medium rounded-full capitalize bg-rose-500 text-white">
+                admin credentials
+            </button>
         </form>
     )
 }

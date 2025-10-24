@@ -24,7 +24,7 @@ export const useAuth = () => {
                 return;
             }
 
-            dispatch(setMyData(null));
+            dispatch(setMyData(null)); 
 
             toast.success("Logged out successfully!");
 

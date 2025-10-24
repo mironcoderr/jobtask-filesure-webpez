@@ -40,6 +40,13 @@ const userSlice = createSlice({
     reducers: {
         setMyData(state, action: PayloadAction<User | null>) {
             state.user = action.payload;
+
+            if (action.payload) {
+                localStorage.setItem('mydata', JSON.stringify(action.payload));
+            } 
+            else {
+                localStorage.removeItem('mydata');
+            }
         },
     },
     extraReducers: (builder) => {
@@ -50,11 +57,16 @@ const userSlice = createSlice({
         .addCase(fetchMyData.fulfilled, (state, action: PayloadAction<User>) => {
             state.user = action.payload;
             state.loading = false;
+
+            if (action.payload) {
+                localStorage.setItem('mydata', JSON.stringify(action.payload));
+            }
         })
         .addCase(fetchMyData.rejected, (state, action) => {
             state.user = null;
             state.loading = false;
             state.error = action.payload as string;
+            localStorage.removeItem('mydata');
         });
     },
 });

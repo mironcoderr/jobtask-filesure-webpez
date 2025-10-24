@@ -1,9 +1,10 @@
 import Image from "next/image"
 import { User } from "@/types/user"
 import { Referral } from "@/types/referral";
-import { getRegisteredUsers, getReferredUsers, getMyData } from "@/library/user"
 import { UserRoleEnum } from "@/enums/userRoleEnum";
 import { ReferStatusEnum } from "@/enums/referStatusEnum";
+import { getRegisteredUsers, getReferredUsers, getMyData } from "@/library/user"
+import ReferralFormComponent from "@/components/forms/ReferralFormComponent";
 
 export default async function DashboardPage() {
 
@@ -12,13 +13,13 @@ export default async function DashboardPage() {
     const referrals = await getReferredUsers();
 
     const convertedUsers = referrals.filter((r: Referral)=> r.status === ReferStatusEnum.CONVERTED);
-    const earnedCredits = referrals.reduce((sum: number, r: Referral)=> r.credits + sum, 0);
+    const pendingUsers = referrals.filter((r: Referral)=> r.status === ReferStatusEnum.PENDING);
 
     return (
         <div className="grid grid-cols-12 gap-4">
             <div className="col-span-3 rounded-2xl overflow-hidden bg-[url(/images/bg/curve.jpg)] bg-no-repeat bg-cover">
                 <div className="h-full bg-gradient-to-r from-black/5 to-white/90">
-                    <Image src="/images/bg/poly.jpg" alt="poly-background" width={300} height={200} className="w-full h-25" />
+                    <Image src="/images/bg/poly.jpg" alt="poly-background" width={300} height={200} className="w-full h-24" />
                     <Image src="/images/avatar.webp" alt="avatar" width={100} height={100} className="w-20 rounded-full mx-auto -mt-10 mb-3 relative z-10 border-2 border-white" />
                     <h3 className="text-lg font-semibold capitalize text-center mb-0.5">{mydata?.name}</h3>
                     <p className="text-base text-center mb-6">{mydata?.email}</p>
@@ -29,43 +30,42 @@ export default async function DashboardPage() {
                         </div>
                         <i className="mc-line-wallet-money text-4xl leading-none text-transparent bg-clip-text bg-gradient-to-b from-primary to-primary/50"></i>
                     </div>
-                    <form className="p-6">
+                    <div className="p-6">
                         <h4 className="text-lg font-semibold mb-2">Invite Friends, Earn Rewards!</h4>
                         <p className="text-sm mb-4">Love our platform? Spread the word! Share your referral link and get rewarded when your friends join and make their first purchase.</p>
-                        <input
-                            type="url"
-                            defaultValue={process.env.NEXT_PUBLIC_SITE_URL + '/registration?refercode=' + mydata?.referralCode}
-                            className="w-full text-sm font-medium text-ellipsis px-4 mb-4 h-10 rounded-full border border-primary/15 text-primary"
-                        />
-                        <button type="button" className="flex-shrink-0 inline-flex items-center justify-center gap-1.5 h-9 px-4 rounded-full text-white bg-primary">
-                            <i className="mc-fill-copy text-lg"></i>
-                            <span className="text-sm font-semibold capitalize">copy link</span>
-                        </button>
-                    </form>
+                        <ReferralFormComponent />
+                    </div>
                 </div>
             </div>
             <div className="col-span-9">
                 <div className="grid grid-cols-12 gap-4">
-                    <div className="col-span-4 flex items-center gap-4 p-4 h-25 rounded-2xl bg-gradient-to-l from-black/5 to-red-50">
+                    <div className="col-span-3 flex items-center gap-4 p-4 h-24 rounded-2xl bg-gradient-to-l from-black/5 to-red-50">
                         <div className="flex-auto">
-                            <h3 className="text-3xl font-semibold mb-1">{referrals.length}</h3>
-                            <p className="text-lg capitalize">referred users</p>
+                            <h3 className="text-2xl font-semibold mb-2">{referrals.length}</h3>
+                            <p className="text-base capitalize">referred users</p>
                         </div>
-                        <i className="mc-line-users text-4xl text-red-600"></i>
+                        <i className="mc-line-users text-3xl text-red-600"></i>
                     </div>
-                    <div className="col-span-4 flex items-center gap-4 p-4 h-25 rounded-2xl bg-gradient-to-l from-black/5 to-green-50">
+                    <div className="col-span-3 flex items-center gap-4 p-4 h-24 rounded-2xl bg-gradient-to-l from-black/5 to-yellow-50">
                         <div className="flex-auto">
-                            <h3 className="text-3xl font-semibold mb-1">{convertedUsers.length}</h3>
-                            <p className="text-lg capitalize">converted users</p>
+                            <h3 className="text-2xl font-semibold mb-2">{pendingUsers.length}</h3>
+                            <p className="text-base capitalize">pending users</p>
                         </div>
-                        <i className="mc-line-element-plus text-4xl text-green-600"></i>
+                        <i className="mc-line-keyboard-open text-3xl text-yellow-600"></i>
                     </div>
-                    <div className="col-span-4 flex items-center gap-4 p-4 h-25 rounded-2xl bg-gradient-to-l from-black/5 to-blue-50">
+                    <div className="col-span-3 flex items-center gap-4 p-4 h-24 rounded-2xl bg-gradient-to-l from-black/5 to-green-50">
                         <div className="flex-auto">
-                            <h3 className="text-3xl font-semibold mb-1">{earnedCredits}</h3>
-                            <p className="text-lg capitalize">earned credits</p>
+                            <h3 className="text-2xl font-semibold mb-2">{convertedUsers.length}</h3>
+                            <p className="text-base capitalize">converted users</p>
                         </div>
-                        <i className="mc-line-benefits text-4xl text-blue-600"></i>
+                        <i className="mc-line-element-plus text-3xl text-green-600"></i>
+                    </div>
+                    <div className="col-span-3 flex items-center gap-4 p-4 h-24 rounded-2xl bg-gradient-to-l from-black/5 to-blue-50">
+                        <div className="flex-auto">
+                            <h3 className="text-2xl font-semibold mb-2">{mydata?.credits}</h3>
+                            <p className="text-base capitalize">earned credits</p>
+                        </div>
+                        <i className="mc-line-benefits text-3xl text-blue-600"></i>
                     </div>
 
                     {mydata?.role === UserRoleEnum.ADMIN &&
@@ -115,18 +115,27 @@ export default async function DashboardPage() {
                                         </tr>
                                     </thead>
                                     <tbody className="text-sm font-medium">
-                                        {referrals.map((referral: Referral, index: number) => (
-                                            <tr key={index} className="odd:bg-white even:bg-primary/5">
-                                                <td className="px-4 py-4">{referral.name}</td>
-                                                <td className="px-4 py-4">{referral.email}</td>
-                                                <td className="px-4 py-4">
-                                                    {referral.status === ReferStatusEnum.PENDING && <span className="capitalize text-yellow-500">pending</span>}
-                                                    {referral.status === ReferStatusEnum.CONVERTED && <span className="capitalize text-green-500">converted</span>}
-                                                </td>
-                                                <td className="px-4 py-4">{referral.credits}</td>
-                                                <td className="px-4 py-4">{referral.convertedAt ?? '---'}</td>
-                                            </tr>
-                                        ))}
+                                        {referrals.length > 0 ?
+                                            referrals.map((referral: Referral, index: number) => (
+                                                <tr key={index} className="odd:bg-white even:bg-primary/5">
+                                                    <td className="px-4 py-4">{referral.name}</td>
+                                                    <td className="px-4 py-4">{referral.email}</td>
+                                                    <td className="px-4 py-4">
+                                                        {referral.status === ReferStatusEnum.PENDING && <span className="capitalize text-yellow-500">pending</span>}
+                                                        {referral.status === ReferStatusEnum.CONVERTED && <span className="capitalize text-green-500">converted</span>}
+                                                    </td>
+                                                    <td className="px-4 py-4">{referral.credits}</td>
+                                                    <td className="px-4 py-4">{referral.convertedAt ?? '---'}</td>
+                                                </tr>
+                                            ))
+                                        :
+                                        <tr>
+                                            <td colSpan={5} className=" text-center py-8">
+                                                <i className="mc-fill-database text-6xl mb-5 text-gray-300"></i>
+                                                <span className="block text-xl text-gray-400">No Referral users</span>
+                                            </td>
+                                        </tr>
+                                        }
                                     </tbody>
                                 </table>
                             </div>

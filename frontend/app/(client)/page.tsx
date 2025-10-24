@@ -9,12 +9,15 @@ import { Feature } from "@/types/feature"
 import { Product } from "@/types/product"
 import { Technology } from "@/types/technology"
 import type { Metadata } from "next";
+import ClientPurchaseButtonComponent from "@/components/buttons/ClientPurchaseButtonComponent"
 
 export const metadata: Metadata = {
     title: "Home"
 }
 
-export default function HomePage() {
+export default async function HomePage({searchParams}: { searchParams: any }) {
+
+    const searchParam = await searchParams
 
     const allProducts: Product[][] = [[], []];
 
@@ -109,12 +112,7 @@ export default function HomePage() {
                                             <i className="mc-line-export-link text-lg flex-shrink-0"></i>
                                             <span className="text-sm font-medium capitalize whitespace-nowrap">live preview</span>
                                         </Link>
-                                        <button
-                                            type="button"
-                                            className='px-4 h-10 rounded-full shadow-xl flex items-center justify-center gap-1.5 bg-primary text-white'>
-                                            <i className="mc-line-cart text-lg flex-shrink-0"></i>
-                                            <span className="text-sm font-medium capitalize whitespace-nowrap">purchase now</span>
-                                        </button>
+                                        <ClientPurchaseButtonComponent />
                                     </div>
                                 </div>
                             ))}
@@ -125,6 +123,30 @@ export default function HomePage() {
         </section>
         {/*=================================
                 TEMPLATE PART END 
+        ==================================*/}
+
+
+        {/*=================================
+              SUCCESS MODAL PART START 
+        ==================================*/}
+        {searchParam.credit === "success" &&
+            <div className="fixed inset-0 z-50 p-3 overflow-y-auto thin-scrolling backdrop-blur bg-black/50 transition-all duration-300">
+                <div className="w-full max-w-sm relative rounded-2xl mx-auto my-5 p-6 text-center bg-white transition-all duration-300">
+                    <Link href="/" className="absolute top-3 right-3">
+                        <i className="mc-fill-close-circle text-xl text-danger"></i>
+                    </Link>
+                    <i className="mb-4 mc-fill-wallet text-6xl text-transparent bg-clip-text bg-gradient-to-t from-primary to-primary/50"></i>
+                    <h3 className="mb-2 text-xl font-semibold text-heading">You have earned 2 credits!</h3>
+                    <p className="mb-8">Your account has been credited with 2 points for your recent purchase. You can now use these credits towards future purchases or rewards on our platform.</p>
+                    <Link href="/dashboard" className="flex-shrink-0 inline-flex items-center justify-center gap-1.5 h-9 px-4 rounded-full border border-primary/50 text-primary">
+                        <i className="mc-fill-grid text-lg"></i>
+                        <span className="text-sm font-semibold">Check the Dashboard</span>
+                    </Link>
+                </div>
+            </div>
+        }
+        {/*=================================
+              SUCCESS MODAL PART END 
         ==================================*/}
         </>
     )
