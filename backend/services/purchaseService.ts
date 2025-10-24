@@ -63,7 +63,7 @@ export const purchaseService = async (
         return {
             purchase,
             credited: true,
-            message: "You are earned 2 credits for first purchase"
+            message: "You are earned 2 credits."
         };
     }
 
@@ -72,7 +72,7 @@ export const purchaseService = async (
         return {
             purchase,
             credited: false,
-            message: "After first purchase you dont get any credits"
+            message: "No credits After first purchase."
         };
     }
 
@@ -80,6 +80,6 @@ export const purchaseService = async (
     return {
         purchase,
         credited: false,
-        message: "Purchase completed but without reffered user you dont have credit"
+        message: "No credits without reffered user."
     }
 }

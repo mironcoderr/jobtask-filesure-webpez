@@ -9,11 +9,17 @@ import ReferralFormComponent from "@/components/forms/ReferralFormComponent";
 export default async function DashboardPage() {
 
     const mydata = await getMyData();
-    const users = await getRegisteredUsers();
-    const referrals = await getReferredUsers();
+    const allUsers = await getRegisteredUsers();
+    const myReferrals = await getReferredUsers();
 
-    const convertedUsers = referrals.filter((r: Referral)=> r.status === ReferStatusEnum.CONVERTED);
-    const pendingUsers = referrals.filter((r: Referral)=> r.status === ReferStatusEnum.PENDING);
+    // FOR ADMIN
+    const organicUsers = allUsers.filter((user: User)=> user.referredBy == null);
+    const referredUsers = allUsers.filter((user: User)=> user.referredBy !== null);
+    const totalCredits = allUsers.reduce((acc: number, user: User)=> acc + user.credits, 0);
+
+    // FOR CLIENT
+    const convertedUsers = myReferrals.filter((r: Referral)=> r.status === ReferStatusEnum.CONVERTED);
+    const pendingUsers = myReferrals.filter((r: Referral)=> r.status === ReferStatusEnum.PENDING);
 
     return (
         <div className="grid grid-cols-12 gap-4">
@@ -41,29 +47,45 @@ export default async function DashboardPage() {
                 <div className="grid grid-cols-12 gap-4">
                     <div className="col-span-3 flex items-center gap-4 p-4 h-24 rounded-2xl bg-gradient-to-l from-black/5 to-red-50">
                         <div className="flex-auto">
-                            <h3 className="text-2xl font-semibold mb-2">{referrals.length}</h3>
-                            <p className="text-base capitalize">referred users</p>
+                            <h3 className="text-2xl font-semibold mb-2">
+                                {mydata?.role === UserRoleEnum.ADMIN ? allUsers.length : myReferrals.length}
+                            </h3>
+                            <p className="text-base capitalize">
+                                {(mydata?.role === UserRoleEnum.ADMIN ? 'registered' : 'referred') + ' users'}
+                            </p>
                         </div>
                         <i className="mc-line-users text-3xl text-red-600"></i>
                     </div>
                     <div className="col-span-3 flex items-center gap-4 p-4 h-24 rounded-2xl bg-gradient-to-l from-black/5 to-yellow-50">
                         <div className="flex-auto">
-                            <h3 className="text-2xl font-semibold mb-2">{pendingUsers.length}</h3>
-                            <p className="text-base capitalize">pending users</p>
+                            <h3 className="text-2xl font-semibold mb-2">
+                                {mydata?.role === UserRoleEnum.ADMIN ? referredUsers.length : pendingUsers.length}
+                            </h3>
+                            <p className="text-base capitalize">
+                                {(mydata?.role === UserRoleEnum.ADMIN ? 'referred' : 'pending') + ' users'}
+                            </p>
                         </div>
                         <i className="mc-line-keyboard-open text-3xl text-yellow-600"></i>
                     </div>
                     <div className="col-span-3 flex items-center gap-4 p-4 h-24 rounded-2xl bg-gradient-to-l from-black/5 to-green-50">
                         <div className="flex-auto">
-                            <h3 className="text-2xl font-semibold mb-2">{convertedUsers.length}</h3>
-                            <p className="text-base capitalize">converted users</p>
+                            <h3 className="text-2xl font-semibold mb-2">
+                                {mydata?.role === UserRoleEnum.ADMIN ? organicUsers.length : convertedUsers.length}
+                            </h3>
+                            <p className="text-base capitalize">
+                                {(mydata?.role === UserRoleEnum.ADMIN ? 'organic' : 'converted') + ' users'}
+                            </p>
                         </div>
                         <i className="mc-line-element-plus text-3xl text-green-600"></i>
                     </div>
                     <div className="col-span-3 flex items-center gap-4 p-4 h-24 rounded-2xl bg-gradient-to-l from-black/5 to-blue-50">
                         <div className="flex-auto">
-                            <h3 className="text-2xl font-semibold mb-2">{mydata?.credits}</h3>
-                            <p className="text-base capitalize">earned credits</p>
+                            <h3 className="text-2xl font-semibold mb-2">
+                                {mydata?.role === UserRoleEnum.ADMIN ? totalCredits : mydata?.credits}
+                            </h3>
+                            <p className="text-base capitalize">
+                                {mydata?.role === UserRoleEnum.ADMIN ? 'total credits' : 'earned credits'}
+                            </p>
                         </div>
                         <i className="mc-line-benefits text-3xl text-blue-600"></i>
                     </div>
@@ -84,7 +106,7 @@ export default async function DashboardPage() {
                                         </tr>
                                     </thead>
                                     <tbody className="text-sm font-medium">
-                                        {users.map((user: User, index: number) => (
+                                        {allUsers.map((user: User, index: number) => (
                                             <tr key={index} className="odd:bg-white even:bg-primary/5">
                                                 <th scope="row" className="px-4 py-4 text-ellipsis max-w-20 overflow-hidden">#{user._id}</th>
                                                 <td className="px-4 py-4">{user.name}</td>
@@ -115,8 +137,8 @@ export default async function DashboardPage() {
                                         </tr>
                                     </thead>
                                     <tbody className="text-sm font-medium">
-                                        {referrals.length > 0 ?
-                                            referrals.map((referral: Referral, index: number) => (
+                                        {myReferrals.length > 0 ?
+                                            myReferrals.map((referral: Referral, index: number) => (
                                                 <tr key={index} className="odd:bg-white even:bg-primary/5">
                                                     <td className="px-4 py-4">{referral.name}</td>
                                                     <td className="px-4 py-4">{referral.email}</td>
