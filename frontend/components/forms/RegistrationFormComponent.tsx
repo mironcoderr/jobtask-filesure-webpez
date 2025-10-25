@@ -1,7 +1,6 @@
 "use client";
 
-import { useSearchParams } from "next/navigation";
-import { useState, ChangeEvent, FormEvent } from "react";
+import { useState, ChangeEvent, FormEvent, useEffect } from "react";
 import { registerSchema, RegisterType } from "@/schemas/RegisterSchema";
 import PasswordFieldComponent from "@/components/PasswordFieldComponent";
 import { useRouter } from "next/navigation";
@@ -12,8 +11,6 @@ import Link from "next/link";
 export default function RegistrationFormComponent() {
 
     const router = useRouter();
-    const searchParam = useSearchParams();
-    const referralCode = searchParam.get('refercode') ?? "";
 
     const [loading, setLoading] = useState<boolean>(false);
 
@@ -22,7 +19,7 @@ export default function RegistrationFormComponent() {
         email: "",
         password: "",
         repeatPassword: "",
-        referralCode: referralCode
+        referralCode: ""
     });
 
     const [error, setError] = useState({
@@ -32,6 +29,13 @@ export default function RegistrationFormComponent() {
         repeatPassword: "",
     });
 
+    useEffect(() => {
+        if (typeof window !== "undefined") {
+            const params = new URLSearchParams(window.location.search);
+            const code = params.get("refercode") ?? "";
+            setFormData(prev => ({ ...prev, referralCode: code }));
+        }
+    }, []);
 
     const handleChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -144,7 +148,7 @@ export default function RegistrationFormComponent() {
                 {error.repeatPassword && <small className="mt-1 block text-xs font-medium text-red-500">{error.repeatPassword}</small>}
             </div>
 
-            {referralCode &&
+            {formData.referralCode &&
                 <div className="mb-4">
                     <label className="block text-xs font-medium capitalize mb-1">referral code</label>
                     <input type="text" name="referralCode" defaultValue={formData.referralCode} readOnly={true} className="w-full h-11 px-4 font-medium rounded-xl cursor-not-allowed border border-primary/50 text-heading bg-gray-100 transition"/>
