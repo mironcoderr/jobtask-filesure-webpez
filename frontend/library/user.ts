@@ -1,17 +1,11 @@
 import { User } from "@/types/user";
-import { getToken } from "./token";
 import { Referral } from "@/types/referral";
 
 export async function getMyData(): Promise<User | null> {
-
-    const token = await getToken();
-    if (!token) return null;
-
     try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/users/me`, {
             method: "GET",
             credentials: "include",
-            headers: { Cookie: `token=${token}`},
             cache: "no-store"
         });
 
@@ -27,14 +21,10 @@ export async function getMyData(): Promise<User | null> {
 }
 
 export async function getRegisteredUsers(): Promise<User[]> {
-
-    const token = await getToken();
-
     try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/users/registered`, {
             method: "GET",
             credentials: "include",
-            headers: { Cookie: `token=${token}`},
             cache: "no-store",
         });
 
@@ -51,14 +41,10 @@ export async function getRegisteredUsers(): Promise<User[]> {
 }
 
 export async function getReferredUsers(): Promise<Referral[]> {
-    const token = await getToken();
-    if (!token) return [];
-
     try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/users/referred`, {
             method: "GET",
             credentials: "include",
-            headers: { Cookie: `token=${token}` },
             cache: "no-store",
         });
 

@@ -15,6 +15,7 @@ export const useAuth = () => {
             const response = await fetch(process.env.NEXT_PUBLIC_BASE_URL + "/api/auth/logout", {
                 method: "POST",
                 credentials: "include",
+                cache: "no-store",
             });
 
             const data = await response.json();

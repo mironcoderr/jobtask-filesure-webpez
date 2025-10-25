@@ -66,7 +66,6 @@ const userSlice = createSlice({
             state.user = null;
             state.loading = false;
             state.error = action.payload as string;
-            localStorage.removeItem('mydata');
         });
     },
 });

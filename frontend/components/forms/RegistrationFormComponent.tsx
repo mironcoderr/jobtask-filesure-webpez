@@ -73,8 +73,9 @@ export default function RegistrationFormComponent() {
 
             const response = await fetch(process.env.NEXT_PUBLIC_BASE_URL + "/api/auth/register", {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(payload),
+                headers: { "Content-Type": "application/json" },
+                credentials: "include",
             });
 
             setLoading(false);

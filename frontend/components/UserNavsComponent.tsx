@@ -9,8 +9,6 @@ export default function UserNavsComponent() {
     const { handleLogout } = useAuth();
     const { user } = useAppSelector(state => state.user);
 
-    console.log(user)
-
     return (
         user ?
         <nav className="flex items-center gap-3 sm:gap-4">

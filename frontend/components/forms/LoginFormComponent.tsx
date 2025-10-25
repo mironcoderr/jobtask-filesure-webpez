@@ -70,9 +70,9 @@ export default function LoginFormComponent() {
 
             const response = await fetch(process.env.NEXT_PUBLIC_BASE_URL + "/api/auth/login", {
                 method: "POST",
+                body: JSON.stringify(payload),
                 headers: { "Content-Type": "application/json" },
                 credentials: "include",
-                body: JSON.stringify(payload),
             });
 
             setLoading(false);
@@ -86,7 +86,6 @@ export default function LoginFormComponent() {
             else {
                 toast.success(result.message || "Login successfully done!");
 
-                dispatch(fetchMyData());
                 dispatch(setMyData(result.user));
 
                 if(result.user.role === UserRoleEnum.ADMIN) {
