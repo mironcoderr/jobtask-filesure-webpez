@@ -12,15 +12,16 @@ export default async function DashboardPage() {
     const allUsers = await getRegisteredUsers();
     const myReferrals = await getReferredUsers();
 
+    
     // FOR ADMIN
     const organicUsers = allUsers.filter((user: User)=> user.referredBy == null);
     const referredUsers = allUsers.filter((user: User)=> user.referredBy !== null);
     const totalCredits = allUsers.reduce((acc: number, user: User)=> acc + user.credits, 0);
-
+    
     // FOR CLIENT
     const convertedUsers = myReferrals.filter((r: Referral)=> r.status === ReferStatusEnum.CONVERTED);
     const pendingUsers = myReferrals.filter((r: Referral)=> r.status === ReferStatusEnum.PENDING);
-
+    
     return (
         <div className="grid grid-cols-12 gap-4">
             <div className="order-2 xl:order-1 col-span-12 xl:col-span-3 rounded-2xl overflow-hidden bg-[url(/images/bg/curve.jpg)] bg-no-repeat bg-cover">
