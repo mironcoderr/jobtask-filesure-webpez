@@ -5,7 +5,7 @@ import { LoginType, loginSchema } from "@/schemas/LoginSchema";
 import { ChangeEvent, FormEvent, useState } from "react";
 import { useAppDispatch } from "@/stores/settings/hooks";
 import { UserRoleEnum } from "@/enums/userRoleEnum";
-import { fetchMyData, setMyData } from "@/stores/slices/user";
+import { setMyData } from "@/stores/slices/user";
 import { useRouter } from "next/navigation";
 import credentials from "@/json/credentials.json";
 import toast from "react-hot-toast";
@@ -88,11 +88,17 @@ export default function LoginFormComponent() {
 
                 dispatch(setMyData(result.user));
 
-                if(result.user.role === UserRoleEnum.ADMIN) {
+                const searchParams = new URLSearchParams(window.location.search);
+                const redirectTo = searchParams.get("redirect");
+
+                if (redirectTo) {
+                    router.push(redirectTo.startsWith("/") ? redirectTo : `/${redirectTo}`);
+                }
+                else if (result.user.role === UserRoleEnum.ADMIN) {
                     router.push("/dashboard");
                 }
                 else {
-                    router.push('/');
+                    router.push("/");
                 }
             }
         } 
