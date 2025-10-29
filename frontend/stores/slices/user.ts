@@ -1,5 +1,4 @@
 import { User } from '@/types/user';
-import { getToken } from '@/library/token';
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 
 interface UserState {
@@ -15,13 +14,9 @@ const initialState: UserState = {
 };
 
 export const fetchMyData = createAsyncThunk('user/fetchMyData', async (_, { rejectWithValue }) => {
-    
-    const token = await getToken();
-
     try {
         const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/users/me`, {
             method: 'GET',
-            headers: { Authorization: `Bearer ${token}` },
             credentials: 'include',
             cache: "no-store"
         });
