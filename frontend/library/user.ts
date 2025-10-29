@@ -9,6 +9,7 @@ export async function getMyData(): Promise<User | null> {
     try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/users/me`, {
             method: "GET",
+            headers: { Authorization: `Bearer ${token}` },
             credentials: "include",
             cache: "no-store"
         });
@@ -31,6 +32,7 @@ export async function getRegisteredUsers(): Promise<User[]> {
     try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/users/registered`, {
             method: "GET",
+            headers: { Authorization: `Bearer ${token}` },
             credentials: "include",
             cache: "no-store",
         });
@@ -54,6 +56,7 @@ export async function getReferredUsers(): Promise<Referral[]> {
     try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/users/referred`, {
             method: "GET",
+            headers: { Authorization: `Bearer ${token}` },
             credentials: "include",
             cache: "no-store",
         });
