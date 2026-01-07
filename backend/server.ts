@@ -14,7 +14,19 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT;
 
-app.use(cors({origin: process.env.FRONTEND_URL, credentials: true}));
+app.use(cors({
+    origin: (origin, callback) => {
+        const allowedOrigin = process.env.FRONTEND_URL;
+
+        if(!origin || origin === allowedOrigin) {
+            callback(null, true);
+        }
+        else {
+            callback(new Error("Not allowed by CORS"));
+        }
+    }, 
+    credentials: true
+}));
 app.use(express.json());
 app.use(cookieParser());
 

@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 export default function LoginPage() {    
     return (
         <main className="bg-[url(/images/patterns/turing.jpg)] bg-no-repeat bg-cover">
-            <div className="w-dvw h-dvh py-10 px-3 thin-scrolling overflow-y-auto bg-gradient-to-t from-primary/95 to-black/95">
+            <div className="w-dvw h-dvh py-10 px-3 thin-scrolling overflow-y-auto bg-linear-to-t from-primary/95 to-black/95">
                 <Link href="/" className="flex items-center gap-0.5 w-fit mx-auto mb-8 text-white">
                     <i className="mc-fill-file text-3xl"></i>
                     <span className="text-3xl font-bold">webpez</span>

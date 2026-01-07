@@ -11,7 +11,6 @@ export default async function DashboardPage() {
     const mydata = await getMyData();
     const allUsers = await getRegisteredUsers();
     const myReferrals = await getReferredUsers();
-
     
     // FOR ADMIN
     const organicUsers = allUsers.filter((user: User)=> user.referredBy == null);
@@ -25,7 +24,7 @@ export default async function DashboardPage() {
     return (
         <div className="grid grid-cols-12 gap-4">
             <div className="order-2 xl:order-1 col-span-12 xl:col-span-3 rounded-2xl overflow-hidden bg-[url(/images/bg/curve.jpg)] bg-no-repeat bg-cover">
-                <div className="h-full bg-gradient-to-r from-black/5 to-white/90">
+                <div className="h-full bg-linear-to-r from-black/5 to-white/90">
                     <Image src="/images/bg/poly.jpg" alt="poly-background" width={300} height={200} className="w-full h-24" />
                     <Image src="/images/avatar.webp" alt="avatar" width={100} height={100} className="w-20 rounded-full mx-auto -mt-10 mb-3 relative z-10 border-2 border-white" />
                     <h3 className="text-lg font-semibold capitalize text-center mb-0.5">{mydata?.name}</h3>
@@ -35,7 +34,7 @@ export default async function DashboardPage() {
                             <span className="text-sm block capitalize mb-1">wallet balance</span>
                             <h3 className="text-2xl font-semibold">$435.00</h3>
                         </div>
-                        <i className="mc-line-wallet-money text-4xl leading-none text-transparent bg-clip-text bg-gradient-to-b from-primary to-primary/50"></i>
+                        <i className="mc-line-wallet-money text-4xl leading-none text-transparent bg-clip-text bg-linear-to-b from-primary to-primary/50"></i>
                     </div>
                     <div className="p-6">
                         <h4 className="text-lg font-semibold mb-2">Invite Friends, Earn Rewards!</h4>
@@ -46,7 +45,7 @@ export default async function DashboardPage() {
             </div>
             <div className="order-1 xl:order-2 col-span-12 xl:col-span-9">
                 <div className="grid grid-cols-12 gap-4">
-                    <div className="col-span-12 sm:col-span-6 xl:col-span-3 flex items-center gap-4 p-4 h-24 rounded-2xl bg-gradient-to-l from-black/5 to-red-50">
+                    <div className="col-span-12 sm:col-span-6 xl:col-span-3 flex items-center gap-4 p-4 h-24 rounded-2xl bg-linear-to-l from-black/5 to-red-50">
                         <div className="flex-auto">
                             <h3 className="text-2xl font-semibold mb-2">
                                 {mydata?.role === UserRoleEnum.ADMIN ? allUsers.length : myReferrals.length}
@@ -57,7 +56,7 @@ export default async function DashboardPage() {
                         </div>
                         <i className="mc-line-users text-3xl text-red-600"></i>
                     </div>
-                    <div className="col-span-12 sm:col-span-6 xl:col-span-3 flex items-center gap-4 p-4 h-24 rounded-2xl bg-gradient-to-l from-black/5 to-yellow-50">
+                    <div className="col-span-12 sm:col-span-6 xl:col-span-3 flex items-center gap-4 p-4 h-24 rounded-2xl bg-linear-to-l from-black/5 to-yellow-50">
                         <div className="flex-auto">
                             <h3 className="text-2xl font-semibold mb-2">
                                 {mydata?.role === UserRoleEnum.ADMIN ? referredUsers.length : pendingUsers.length}
@@ -68,7 +67,7 @@ export default async function DashboardPage() {
                         </div>
                         <i className="mc-line-keyboard-open text-3xl text-yellow-600"></i>
                     </div>
-                    <div className="col-span-12 sm:col-span-6 xl:col-span-3 flex items-center gap-4 p-4 h-24 rounded-2xl bg-gradient-to-l from-black/5 to-green-50">
+                    <div className="col-span-12 sm:col-span-6 xl:col-span-3 flex items-center gap-4 p-4 h-24 rounded-2xl bg-linear-to-l from-black/5 to-green-50">
                         <div className="flex-auto">
                             <h3 className="text-2xl font-semibold mb-2">
                                 {mydata?.role === UserRoleEnum.ADMIN ? organicUsers.length : convertedUsers.length}
@@ -79,7 +78,7 @@ export default async function DashboardPage() {
                         </div>
                         <i className="mc-line-element-plus text-3xl text-green-600"></i>
                     </div>
-                    <div className="col-span-12 sm:col-span-6 xl:col-span-3 flex items-center gap-4 p-4 h-24 rounded-2xl bg-gradient-to-l from-black/5 to-blue-50">
+                    <div className="col-span-12 sm:col-span-6 xl:col-span-3 flex items-center gap-4 p-4 h-24 rounded-2xl bg-linear-to-l from-black/5 to-blue-50">
                         <div className="flex-auto">
                             <h3 className="text-2xl font-semibold mb-2">
                                 {mydata?.role === UserRoleEnum.ADMIN ? totalCredits : mydata?.credits}

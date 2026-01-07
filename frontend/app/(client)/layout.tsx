@@ -41,7 +41,7 @@ export default async function ClientLayout({children}: Readonly<{
         {/*=================================
                 FOOTER PART START 
         ==================================*/}
-        <footer className="bg-gradient-to-t from-primary to-black">
+        <footer className="bg-linear-to-t from-primary to-black">
             <a href='#' className='w-12 h-12 mx-auto mb-3 -translate-y-6 rounded-full flex items-center justify-center border-2 border-white text-white bg-primary'>
                 <i className="mc-line-arrow-up text-2xl"></i>
             </a>
