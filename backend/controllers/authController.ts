@@ -33,12 +33,10 @@ export const loginController = async (
 
         const { user, token } = await loginService(validatedData);
 
-        const isProduction = process.env.NODE_ENV === "production";
-
         res.cookie("token", token, {
             httpOnly: true,
-            secure: isProduction,
-            sameSite: isProduction ? "none" : "lax",
+            secure: process.env.NODE_ENV === "production",
+            sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
             maxAge: 7 * 24 * 60 * 60 * 1000,
             path: "/",
         });
@@ -60,12 +58,10 @@ export const logoutController = async (
     next: NextFunction
 ) => {
     try {
-        const isProduction = process.env.NODE_ENV === "production";
-
         res.clearCookie("token", {
             httpOnly: true,
-            secure: isProduction,
-            sameSite: isProduction ? "none" : "lax",
+            secure: process.env.NODE_ENV === "production",
+            sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
             path: "/",
         });
 

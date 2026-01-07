@@ -148,7 +148,7 @@ export default function LoginFormComponent() {
                 Don't have an account? <Link href="/registration" className="inline font-semibold capitalize text-primary">registration</Link>
             </p>
 
-            <div className="py-4 before:w-full before:h-[1px] before:bg-primary/10">
+            <div className="py-4 before:w-full before:h-px before:bg-primary/10">
                 <span className="mx-auto -mt-6.5 relative z-10 w-10 aspect-square rounded-full flex items-center justify-center font-medium border border-primary/10 bg-white">or</span>
             </div>
 
