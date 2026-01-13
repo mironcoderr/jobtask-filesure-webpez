@@ -16,13 +16,13 @@ export default function StoreProvider({
         storeRef.current = makeStore()
     }
 
-    useEffect(() => {
-        const haveData = localStorage.getItem('mydata');
+    // useEffect(() => {
+    //     const haveData = localStorage.getItem('mydata');
 
-        if(haveData) {
-            storeRef.current?.dispatch(fetchMyData());
-        }
-    }, []);
+    //     if(haveData) {
+    //         storeRef.current?.dispatch(fetchMyData());
+    //     }
+    // }, []);
 
     return (
         <Provider store={storeRef.current}>

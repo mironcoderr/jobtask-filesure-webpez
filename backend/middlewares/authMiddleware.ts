@@ -7,17 +7,25 @@ export const authMiddleware = async (
     next: NextFunction
 ) => {
     try {
-        const token = req.cookies.token;
+        const token =
+            req.headers.authorization?.split(" ")[1] ||
+            req.cookies?.token;
         
-        if (!token) return res.status(401).json({ message: "Unauthorized User!" });
+        if (!token) {
+            return res.status(401).json({ 
+                message: "Unauthorized User!" 
+            });
+        }
 
-        const decoded = jwt.verify(token, process.env.JWT_SECRET as string) as { id: string; role: string };
+        const decoded = jwt.verify(token, process.env.JWT_SECRET as string);
 
-        req.user = decoded; 
+        req.user = decoded as { id: string; role: string };
 
         next();
     } 
     catch (err) {
-        return res.status(401).json({ message: "Unauthorized User!" });
+        return res.status(401).json({ 
+            message: "Unauthorized User!" 
+        });
     }
 };

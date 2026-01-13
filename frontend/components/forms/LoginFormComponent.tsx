@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 import credentials from "@/json/credentials.json";
 import toast from "react-hot-toast";
 import Link from "next/link";
+import apiClient from "@/library/axios.client";
 
 export default function LoginFormComponent() {
 
@@ -68,25 +69,16 @@ export default function LoginFormComponent() {
         try {
             const payload = parsedData.data;
 
-            const response = await fetch(process.env.NEXT_PUBLIC_BASE_URL + "/api/auth/login", {
-                method: "POST",
-                body: JSON.stringify(payload),
-                headers: { "Content-Type": "application/json" },
-                credentials: "include",
-            });
+            const response = await apiClient.post("/auth/login", payload);
 
             setLoading(false);
-            
-            const result = await response.json();
 
-            if (!response.ok) {
-                toast.error(result.message || "Login failed!");
+            if (!response.data.success) {
+                toast.error(response.data.message || "Login failed!");
                 return;
             }
             else {
-                toast.success(result.message || "Login successfully done!");
-
-                dispatch(setMyData(result.user));
+                toast.success(response.data.message || "Login successfully done!");
 
                 const searchParams = new URLSearchParams(window.location.search);
                 const redirectTo = searchParams.get("redirect");
@@ -94,7 +86,7 @@ export default function LoginFormComponent() {
                 if (redirectTo) {
                     router.push(redirectTo.startsWith("/") ? redirectTo : `/${redirectTo}`);
                 }
-                else if (result.user.role === UserRoleEnum.ADMIN) {
+                else if (response.data.user.role === UserRoleEnum.ADMIN) {
                     router.push("/dashboard");
                 }
                 else {

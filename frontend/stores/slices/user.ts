@@ -1,4 +1,5 @@
 import { User } from '@/types/user';
+import apiClient from '@/library/axios.client';
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 
 interface UserState {
@@ -15,19 +16,13 @@ const initialState: UserState = {
 
 export const fetchMyData = createAsyncThunk('user/fetchMyData', async (_, { rejectWithValue }) => {
     try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/users/me`, {
-            method: 'GET',
-            credentials: 'include',
-            cache: "no-store"
-        });
+        const response = await apiClient.get("/users/me");
 
-        if (!response.ok) {
-            return rejectWithValue('Unauthorized user!');
+        if (!response.data.success) {
+            return rejectWithValue('Unauthorized user!!!');
         }
 
-        const data = await response.json();
-
-        return data.user;
+        return response.data.user;
 
     } 
     catch (error) {

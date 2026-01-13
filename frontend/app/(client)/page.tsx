@@ -5,10 +5,11 @@ import features from "@/json/features.json"
 import products from "@/json/products.json"
 import technologies from "@/json/technologies.json"
 
+import type { Metadata } from "next";
+import { getMyData } from "@/library/user"
 import { Feature } from "@/types/feature"
 import { Product } from "@/types/product"
 import { Technology } from "@/types/technology"
-import type { Metadata } from "next";
 import ClientPurchaseButtonComponent from "@/components/buttons/ClientPurchaseButtonComponent"
 
 export const metadata: Metadata = {
@@ -16,6 +17,8 @@ export const metadata: Metadata = {
 }
 
 export default async function HomePage({searchParams}: { searchParams: any }) {
+
+    const myData = await getMyData();
 
     const searchParam = await searchParams
 
@@ -43,7 +46,7 @@ export default async function HomePage({searchParams}: { searchParams: any }) {
                     </h1>
                     <ul className="mb-16 flex flex-wrap items-center justify-center gap-4">
                         {technologies.map((technology: Technology, index: number) => (
-                            <li key={index} className="w-12 aspect-square rounded-full flex-shrink-0 flex items-center justify-center backdrop-blur shadow-lg bg-linear-to-t from-white to-white/60">
+                            <li key={index} className="w-12 aspect-square rounded-full shrink-0 flex items-center justify-center backdrop-blur shadow-lg bg-linear-to-t from-white to-white/60">
                                 <Image src={technology.image} alt={technology.name} width={100} height={100} className={
                                     technology.name === 'html' ? 'w-5'
                                     : technology.name === 'pinia' ? 'w-5'
@@ -109,10 +112,10 @@ export default async function HomePage({searchParams}: { searchParams: any }) {
                                     </figure>
                                     <div className='absolute inset-0 z-10 rounded-3xl flex flex-col items-center justify-center gap-4 bg-linear-to-t from-primary to-black/20 transition duration-300 opacity-0 invisible group-hover:visible group-hover:opacity-100'>
                                         <Link target="_blank" href={product.path} className='px-4 h-10 rounded-full shadow-xl flex items-center justify-center gap-1.5 text-heading bg-white'>
-                                            <i className="mc-line-export-link text-lg flex-shrink-0"></i>
+                                            <i className="mc-line-export-link text-lg shrink-0"></i>
                                             <span className="text-sm font-medium capitalize whitespace-nowrap">live preview</span>
                                         </Link>
-                                        <ClientPurchaseButtonComponent />
+                                        <ClientPurchaseButtonComponent user={myData} />
                                     </div>
                                 </div>
                             ))}
@@ -138,7 +141,7 @@ export default async function HomePage({searchParams}: { searchParams: any }) {
                     <i className="mb-4 mc-fill-wallet text-6xl text-transparent bg-clip-text bg-linear-to-t from-primary to-primary/50"></i>
                     <h3 className="mb-2 text-xl font-semibold text-heading">You have earned 2 credits!</h3>
                     <p className="mb-8">Your account has been credited with 2 points for your recent purchase. You can now use these credits towards future purchases or rewards on our platform.</p>
-                    <Link href="/dashboard" className="flex-shrink-0 inline-flex items-center justify-center gap-1.5 h-9 px-4 rounded-full border border-primary/50 text-primary">
+                    <Link href="/dashboard" className="shrink-0 inline-flex items-center justify-center gap-1.5 h-9 px-4 rounded-full border border-primary/50 text-primary">
                         <i className="mc-fill-grid text-lg"></i>
                         <span className="text-sm font-semibold">Check the Dashboard</span>
                     </Link>

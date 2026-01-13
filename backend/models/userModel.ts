@@ -12,6 +12,7 @@ export interface UserType extends Document {
     referralCode: string,
     credits: number,
     referredBy?: mongoose.Types.ObjectId | null;
+    isFirstPurchaseFromReferral: boolean;
 }
 
 const userSchema = new Schema<UserType>({
@@ -46,6 +47,11 @@ const userSchema = new Schema<UserType>({
         type: mongoose.Schema.Types.ObjectId, 
         ref: "User", 
         default: null 
+    },
+    isFirstPurchaseFromReferral: {
+        type: Boolean,
+        required: true,
+        default: false
     },
 }, { timestamps: true });
 

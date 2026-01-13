@@ -10,10 +10,15 @@ import socials from "@/json/socials.json"
 import supports from "@/json/supports.json"
 import contacts from "@/json/contacts.json"
 import UserNavsComponent from "@/components/UserNavsComponent"
+import { getMyData } from "@/library/user"
+
 
 export default async function ClientLayout({children}: Readonly<{
     children: React.ReactNode
 }>) {
+
+    const myData = await getMyData();
+
     return (
         <>
         {/*=================================
@@ -26,7 +31,7 @@ export default async function ClientLayout({children}: Readonly<{
                         <i className="mc-fill-file text-3xl"></i>
                         <span className="text-3xl font-bold">webpez</span>
                     </Link>
-                    <UserNavsComponent />
+                    <UserNavsComponent data={myData} />
                 </div>
             </div>
         </header>
@@ -57,7 +62,7 @@ export default async function ClientLayout({children}: Readonly<{
                                 <label className="mb-2 font-medium text-white">Subscribe to our newsletter</label>
                                 <div className="flex w-full h-10 rounded-3xl p-1 bg-white">
                                     <input type="text" placeholder="Your email address" className="w-full h-full pl-3 pr-2 text-sm text-paragraph" />
-                                    <button type="submit" className="text-xs font-semibold capitalize flex-shrink-0 px-3 h-full rounded-3xl bg-primary text-white">Subscribe</button>
+                                    <button type="submit" className="text-xs font-semibold capitalize shrink-0 px-3 h-full rounded-3xl bg-primary text-white">Subscribe</button>
                                 </div>
                             </form>
                             <nav className="flex flex-wrap items-center sm:max-lg:justify-center gap-4">

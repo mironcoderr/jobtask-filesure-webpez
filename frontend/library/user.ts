@@ -1,47 +1,26 @@
 import { User } from "@/types/user";
-import { getToken } from "./token";
 import { Referral } from "@/types/referral";
+import apiServer from "./axios.server";
 
 export async function getMyData(): Promise<User | null> {
-
-    const token = await getToken();
-
     try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/users/me`, {
-            method: "GET",
-            credentials: "include",
-            headers: { Cookie: `token=${token}`},
-            cache: "no-store"
-        });
+        const res = await apiServer.get("/users/me");
+        if (!res.data.success) return null;
 
-        if (!res.ok) return null;
-
-        const data = await res.json();
-        
-        return data.user as User
+        return res.data.user as User
     } 
     catch (error) {
         return null;
     }
 }
 
-export async function getRegisteredUsers(): Promise<User[]> {
-
-    const token = await getToken();
-    
+export async function getRegisteredUsers(): Promise<User[]> {    
     try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/users/registered`, {
-            method: "GET",
-            credentials: "include",
-            headers: { Cookie: `token=${token}`},
-            cache: "no-store",
-        });
+        const res = await apiServer.get("/users/registered");
 
-        if (!res.ok) return [];
+        if (!res.data.success) return [];
 
-        const data = await res.json();
-
-        return data.users as User[];
+        return res.data.users as User[];
     } 
     catch (error) {
         console.error("Error fetching users:", error);
@@ -50,25 +29,15 @@ export async function getRegisteredUsers(): Promise<User[]> {
 }
 
 export async function getReferredUsers(): Promise<Referral[]> {
-
-    const token = await getToken();
-
     try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/users/referred`, {
-            method: "GET",
-            credentials: "include",
-            headers: { Cookie: `token=${token}`},
-            cache: "no-store",
-        });
+        const res = await apiServer.get("/users/referred");
 
-        if (!res.ok) return [];
+        if (!res.data.success) return [];
 
-        const data = await res.json();
-
-        return data.referrals as Referral[];
+        return res.data.referrals as Referral[];
     } 
-    catch (error) {
-        console.error("Error fetching referrals:", error);
+    catch (error) {     
+        console.error("Error fetching referred users:", error);
         return [];
-    }
+    }   
 }

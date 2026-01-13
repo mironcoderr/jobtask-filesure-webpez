@@ -3,9 +3,11 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { usePathname } from "next/navigation";
+import apiClient from "@/library/axios.client";
 import toast from "react-hot-toast";
+import { User } from "@/types/user";
 
-export default function ClientPurchaseButtonComponent() {
+export default function ClientPurchaseButtonComponent({user}: {user: User | null}) {
 
     const router = useRouter();
     const pathname = usePathname();
@@ -13,38 +15,27 @@ export default function ClientPurchaseButtonComponent() {
     const [loading, setLoading] = useState(false);
 
     const handlePurchaseProduct = async () => {
+        if(!user) {
+            toast.error("Please login before purchase!");
+            router.replace("/login");
+            return;
+        }
+
+        if(!user.referredBy) {
+            toast.error("No credits without reffered user.");
+            return
+        }
+
+        if(user.isFirstPurchaseFromReferral) {
+            toast.error("Already used your referral credit.");
+            return;
+        }
+
         setLoading(true);
 
         try {
-            const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/purchases`, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                credentials: "include",
-            });
-
-            const data = await response.json();
-
-            if (!response.ok) {
-                if (response.status === 401) {
-                    toast.error("You must be logged in before purchase!");
-                    router.replace("/login");
-                } 
-                else {
-                    toast.error(data.message || "Purchase failed!");
-                }
-                setLoading(false);
-                return;
-            }
-
-            if(data.credited) {
-                toast.success(data.message || "Purchase successful!");
-                router.push(`${pathname}?credit=success`);
-            }
-            else {
-                toast(data.message, {
-                    icon: '😞',
-                })
-            }
+            await apiClient.post("/purchases");
+            router.push(`${pathname}?credit=success`);
         } 
         catch (error) {
             toast.error("Network error, please try again!");
@@ -63,7 +54,7 @@ export default function ClientPurchaseButtonComponent() {
                 loading ? "opacity-80 cursor-not-allowed" : "opacity-100"
             }`}
         >
-            <i className="mc-line-cart text-lg flex-shrink-0"></i>
+            <i className="mc-line-cart text-lg shrink-0"></i>
             <span className="text-sm font-medium capitalize whitespace-nowrap">
                 {loading ? "processing..." : "purchase now"}
             </span>

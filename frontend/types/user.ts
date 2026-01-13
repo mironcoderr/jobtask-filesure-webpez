@@ -7,6 +7,7 @@ export interface User {
     credits: number;
     referredBy: string | null;
     referralCode: string;
+    isFirstPurchaseFromReferral: boolean;
     createdAt: string;
     updatedAt: string;
     __v: number;

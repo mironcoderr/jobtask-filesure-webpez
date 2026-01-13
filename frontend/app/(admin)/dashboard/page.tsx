@@ -39,7 +39,7 @@ export default async function DashboardPage() {
                     <div className="p-6">
                         <h4 className="text-lg font-semibold mb-2">Invite Friends, Earn Rewards!</h4>
                         <p className="text-sm mb-4">Love our platform? Spread the word! Share your referral link and get rewarded when your friends join and make their first purchase.</p>
-                        <ReferralFormComponent />
+                        <ReferralFormComponent user={mydata} />
                     </div>
                 </div>
             </div>

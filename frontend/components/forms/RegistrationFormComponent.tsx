@@ -6,6 +6,7 @@ import PasswordFieldComponent from "@/components/PasswordFieldComponent";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import Link from "next/link";
+import apiClient from "@/library/axios.client";
 
 
 export default function RegistrationFormComponent() {
@@ -71,23 +72,16 @@ export default function RegistrationFormComponent() {
         try {
             const { repeatPassword, ...payload } = parsedData.data;
 
-            const response = await fetch(process.env.NEXT_PUBLIC_BASE_URL + "/api/auth/register", {
-                method: "POST",
-                body: JSON.stringify(payload),
-                headers: { "Content-Type": "application/json" },
-                credentials: "include",
-            });
+            const response = await apiClient.post("/auth/register", payload);
 
             setLoading(false);
-            
-            const result = await response.json();
 
-            if (!response.ok) {
-                toast.error(result.message || "Registration failed!");
+            if (!response.data.success) {
+                toast.error(response.data.message || "Registration failed!");
                 return;
             }
             else {
-                toast.success(result.message || "Registration successfully done!");
+                toast.success(response.data.message || "Registration successfully done!");
                 router.push('/login');
             }
         } 

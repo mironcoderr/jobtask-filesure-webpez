@@ -1,11 +1,9 @@
 "use client"
 
 import { useState } from "react";
-import { useAppSelector } from "@/stores/settings/hooks"
+import { User } from "@/types/user";
 
-export default function ReferralFormComponent() {
-
-    const { user } = useAppSelector(state => state.user);
+export default function ReferralFormComponent({ user }: { user: User | null }) {
 
     const [copied, setCopied] = useState<boolean>(false);
 
@@ -26,7 +24,7 @@ export default function ReferralFormComponent() {
                 value={referralLink}
                 className="w-full text-sm font-medium text-ellipsis px-4 mb-4 h-10 rounded-full border border-primary/15 text-primary"
             />
-            <button onClick={handleCopyLink} type="button" className="flex-shrink-0 inline-flex items-center justify-center gap-1.5 h-9 px-4 rounded-full text-white bg-primary">
+            <button onClick={handleCopyLink} type="button" className="shrink-0 inline-flex items-center justify-center gap-1.5 h-9 px-4 rounded-full text-white bg-primary">
                 <i className={copied ? "mc-fill-check" : "mc-fill-copy" + " text-lg"}></i>
                 <span className="text-sm font-semibold capitalize">
                     {copied ? "copied!" : "copy link"}
