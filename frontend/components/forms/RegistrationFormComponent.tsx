@@ -3,15 +3,13 @@
 import { useState, ChangeEvent, FormEvent, useEffect } from "react";
 import { registerSchema, RegisterType } from "@/schemas/RegisterSchema";
 import PasswordFieldComponent from "@/components/PasswordFieldComponent";
-import { useRouter } from "next/navigation";
-import toast from "react-hot-toast";
+import useAuth from "@/hooks/useAuth";
 import Link from "next/link";
-import apiClient from "@/library/axios.client";
 
 
 export default function RegistrationFormComponent() {
 
-    const router = useRouter();
+    const { register } = useAuth();
 
     const [loading, setLoading] = useState<boolean>(false);
 
@@ -69,26 +67,11 @@ export default function RegistrationFormComponent() {
 
         setLoading(true);
 
-        try {
-            const { repeatPassword, ...payload } = parsedData.data;
+        const { repeatPassword, ...payload } = parsedData.data;
 
-            const response = await apiClient.post("/auth/register", payload);
+        const response = await register(payload);
 
-            setLoading(false);
-
-            if (!response.data.success) {
-                toast.error(response.data.message || "Registration failed!");
-                return;
-            }
-            else {
-                toast.success(response.data.message || "Registration successfully done!");
-                router.push('/login');
-            }
-        } 
-        catch(error) {
-            setLoading(false);
-            toast.error("Something went wrong network issue!");
-        }
+        setLoading(response.success);
     };
 
     return (

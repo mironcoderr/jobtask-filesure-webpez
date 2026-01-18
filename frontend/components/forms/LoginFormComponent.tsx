@@ -3,19 +3,13 @@
 import PasswordFieldComponent from "@/components/PasswordFieldComponent";
 import { LoginType, loginSchema } from "@/schemas/LoginSchema";
 import { ChangeEvent, FormEvent, useState } from "react";
-import { useAppDispatch } from "@/stores/settings/hooks";
-import { UserRoleEnum } from "@/enums/userRoleEnum";
-import { setMyData } from "@/stores/slices/user";
-import { useRouter } from "next/navigation";
 import credentials from "@/json/credentials.json";
-import toast from "react-hot-toast";
+import useAuth from "@/hooks/useAuth";
 import Link from "next/link";
-import apiClient from "@/library/axios.client";
 
 export default function LoginFormComponent() {
 
-    const router = useRouter();
-    const dispatch = useAppDispatch();
+    const { login } = useAuth();
 
     const [loading, setLoading] = useState<boolean>(false);
 
@@ -66,38 +60,9 @@ export default function LoginFormComponent() {
 
         setLoading(true);
 
-        try {
-            const payload = parsedData.data;
+        const response = await login(parsedData.data);
 
-            const response = await apiClient.post("/auth/login", payload);
-
-            setLoading(false);
-
-            if (!response.data.success) {
-                toast.error(response.data.message || "Login failed!");
-                return;
-            }
-            else {
-                toast.success(response.data.message || "Login successfully done!");
-
-                const searchParams = new URLSearchParams(window.location.search);
-                const redirectTo = searchParams.get("redirect");
-
-                if (redirectTo) {
-                    router.push(redirectTo.startsWith("/") ? redirectTo : `/${redirectTo}`);
-                }
-                else if (response.data.user.role === UserRoleEnum.ADMIN) {
-                    router.push("/dashboard");
-                }
-                else {
-                    router.push("/");
-                }
-            }
-        } 
-        catch(error) {
-            setLoading(false);
-            toast.error("Something went wrong network issue!");
-        }
+        setLoading(response.success);
     };
 
     return (

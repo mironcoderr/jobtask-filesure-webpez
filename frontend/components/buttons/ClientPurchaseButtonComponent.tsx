@@ -2,15 +2,15 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { usePathname } from "next/navigation";
-import apiClient from "@/library/axios.client";
 import toast from "react-hot-toast";
 import { User } from "@/types/user";
+import usePurchase from "@/hooks/usePurchase";
 
 export default function ClientPurchaseButtonComponent({user}: {user: User | null}) {
 
+    const { purchase } = usePurchase();
+
     const router = useRouter();
-    const pathname = usePathname();
 
     const [loading, setLoading] = useState(false);
 
@@ -33,16 +33,9 @@ export default function ClientPurchaseButtonComponent({user}: {user: User | null
 
         setLoading(true);
 
-        try {
-            await apiClient.post("/purchases");
-            router.push(`${pathname}?credit=success`);
-        } 
-        catch (error) {
-            toast.error("Network error, please try again!");
-        } 
-        finally {
-            setLoading(false);
-        }
+        const response = await purchase();
+
+        setLoading(response.success);
     };
 
     return (

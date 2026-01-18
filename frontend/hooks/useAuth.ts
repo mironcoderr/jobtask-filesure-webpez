@@ -1,35 +1,82 @@
-"use client";
-
+import Cookies from "js-cookie";
 import toast from "react-hot-toast";
-import { useRouter } from "next/navigation";
 import apiClient from "@/library/axios.client";
+import { useAppDispatch } from "@/stores/settings/hooks";
+import { setAuthentication } from "@/stores/slices/auth";
+import { RegisterType } from "@/schemas/RegisterSchema";
+import { UserRoleEnum } from "@/enums/userRoleEnum";
+import { LoginType } from "@/schemas/LoginSchema";
+import { useRouter } from "next/navigation";
+import { Register } from "@/types/register";
+import { Login } from "@/types/login";
 
-export const useAuth = () => {
+
+export default function useAuth() {
 
     const router = useRouter();
+    const dispatch = useAppDispatch();
 
-    const handleLogout = async () => {
+    const register = async (payload: Omit<RegisterType, 'repeatPassword'>) => {
         try {
-            const response = await apiClient.post("/auth/logout");
+            const { data } = await apiClient.post<Register>("/auth/register", payload);
 
-            if (!response.data.success) {
-                toast.error(response.data.message || "Logout failed");
-                return;
+            if (!data.success) {
+                toast.error(data.message);
+                return {success: false, data: null};
             }
 
-            toast.success("Logged out successfully!");
+            toast.success(data.message);
 
-            router.replace("/");
-            
-            router.refresh();
+            router.push('/login');
 
-        } 
-        catch (err) {
-            toast.error("Something went wrong!");
+            return {success: false, data};
         }
+        catch {
+            toast.error("Something went wrong network issue!");
+            return {success: false, data: null};
+        }
+    }
+
+    const login = async (payload: LoginType) => {
+        try {
+            const { data } = await apiClient.post<Login>("/auth/login", payload);
+
+            if (!data.success) {
+                toast.error(data.message);
+                return {success: false, data: null};
+            }
+
+            Cookies.set("token", data.token);
+
+            dispatch(setAuthentication(true));
+
+            toast.success(data.message);
+
+            const searchParams = new URLSearchParams(window.location.search);
+            const redirectTo = searchParams.get("redirect");
+
+            if (redirectTo) router.push(redirectTo.startsWith("/") ? redirectTo : `/${redirectTo}`);
+            else if (data.user.role === UserRoleEnum.ADMIN) router.push("/dashboard");
+            else router.push("/");
+
+            return {success: false, data};
+        }
+        catch {
+            toast.error("Something went wrong network issue!");
+            return {success: false, data: null};
+        }
+    }
+
+    const logout = () => {
+        Cookies.remove('token');
+        dispatch(setAuthentication(false));
+        toast.success('Logged out successfully!');
+        router.replace("/");
     };
 
     return { 
-        handleLogout 
+        login,
+        logout,
+        register
     };
 };

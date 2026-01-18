@@ -5,7 +5,6 @@ import express from "express";
 import authRoutes from "./routes/authRoute";
 import userRoutes from "./routes/userRoute";
 import purchaseRoutes from "./routes/purchaseRoute";
-import cookieParser from "cookie-parser";
 import { connectDatabase } from "./configs/database";
 import { errorMiddleware } from "./middlewares/errorMiddleware";
 
@@ -14,18 +13,14 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT;
 
-const allowedOrigins = [
-    process.env.FRONTEND_URL as string,
-    "http://localhost:3000",
-]
-
 app.use(cors({
-    origin: allowedOrigins,
-    credentials: true
+    origin: [
+        process.env.FRONTEND_URL as string,
+        "http://localhost:3000",
+    ]
 }));
 
 app.use(express.json());
-app.use(cookieParser());
 
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
