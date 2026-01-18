@@ -31,7 +31,7 @@ export default async function ClientLayout({children}: Readonly<{
                         <i className="mc-fill-file text-3xl"></i>
                         <span className="text-3xl font-bold">webpez</span>
                     </Link>
-                    <UserNavsComponent data={myData} />
+                    <UserNavsComponent />
                 </div>
             </div>
         </header>
